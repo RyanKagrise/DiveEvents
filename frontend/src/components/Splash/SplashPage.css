@@ -1,0 +1,20 @@
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: grey;
+  width: 100%;
+  height: 1000px;
+}
+
+.title {
+  font: 40px solid serif;
+  color: blue;
+}
+.tank-photo {
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  border: 3px white solid;
+  border-radius: 20%;
+}

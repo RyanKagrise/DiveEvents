@@ -9,6 +9,7 @@ import Splash from "./components/Splash"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -18,12 +19,14 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact={true} path="/">
+            <Splash />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
         </Switch>
       )}
-      <Splash />
     </>
   );
 }
