@@ -12,10 +12,6 @@ module.exports = {
         type: Sequelize.VARCHAR,
         allowNull: false
       },
-      address: {
-        type: Sequelize.VARCHAR,
-        allowNull: false
-      },
       city: {
         type: Sequelize.VARCHAR,
         allowNull: false

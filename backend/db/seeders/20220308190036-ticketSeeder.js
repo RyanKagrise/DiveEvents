@@ -8,10 +8,32 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkInsert('Tickets', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
+      return queryInterface.bulkInsert('Tickets', [
+      {
+        eventId: 2,
+        userId: 1,
+      },
+      {
+        eventId: 3,
+        userId: 1,
+      },
+      {
+        eventId: 1,
+        userId: 2,
+      },
+      {
+        eventId: 3,
+        userId: 2,
+      },
+      {
+        eventId: 1,
+        userId: 3,
+      },
+      {
+        eventId: 2,
+        userId: 3,
+      },
+    ], {});
   },
 
   down: (queryInterface, Sequelize) => {

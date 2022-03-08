@@ -5,10 +5,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.VARCHAR,
       allowNull: false
     },
-    address: {
-      type: DataTypes.VARCHAR,
-      allowNull: false
-    },
     city: {
       type: DataTypes.VARCHAR,
       allowNull: false
