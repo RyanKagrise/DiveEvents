@@ -25,7 +25,8 @@ module.exports = {
         allowNull: false
       },
       zipCode: {
-        type: Sequelize.VARCHAR
+        type: Sequelize.VARCHAR,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

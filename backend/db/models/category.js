@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Category = sequelize.define('Category', {
     type: {
-      type: DataTypes.STRING,
+      type: DataTypes.VARCHAR,
       allowNull: false
     },
     eventId: {
