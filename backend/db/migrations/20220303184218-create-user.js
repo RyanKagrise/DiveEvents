@@ -9,12 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       username: {
-        type: Sequelize.VARCHAR(50),
+        type: Sequelize.STRING(50),
         allowNull: false,
         unique: true
       },
       email: {
-        type: Sequelize.VARCHAR(50),
+        type: Sequelize.STRING(50),
         allowNull: false,
         unique: true
       },

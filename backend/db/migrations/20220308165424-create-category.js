@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       type: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING(50),
         allowNull: false
       },
       eventId: {

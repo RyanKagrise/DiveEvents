@@ -19,7 +19,7 @@ module.exports = {
         allowNull: false
       },
       name: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING(50),
         allowNull: false
       },
       date: {

@@ -2,19 +2,19 @@
 module.exports = (sequelize, DataTypes) => {
   const Venue = sequelize.define('Venue', {
     name: {
-      type: DataTypes.VARCHAR,
+      type: DataTypes.STRING(50),
       allowNull: false
     },
     city: {
-      type: DataTypes.VARCHAR,
+      type: DataTypes.STRING(50),
       allowNull: false
     },
     state: {
-      type: DataTypes.VARCHAR,
+      type: DataTypes.STRING(50),
       allowNull: false
     },
     zipCode: {
-      type: DataTypes.VARCHAR,
+      type: DataTypes.STRING(5),
       allowNull: false
     },
   }, {});

@@ -9,19 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING(50),
         allowNull: false
       },
       city: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING(50),
         allowNull: false
       },
       state: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING(50),
         allowNull: false
       },
       zipCode: {
-        type: Sequelize.VARCHAR,
+        type: Sequelize.STRING(5),
         allowNull: false
       },
       createdAt: {
