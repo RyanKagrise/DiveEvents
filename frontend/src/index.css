@@ -1,5 +1,6 @@
 /* TODO Add site wide styles */
 body {
-  background-color: grey;
-
+  background-image: url(images/beach-background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }

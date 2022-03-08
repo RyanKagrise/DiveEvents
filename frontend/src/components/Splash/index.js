@@ -9,7 +9,6 @@ const SplashPage = () => {
     return (
       <>
         <div>
-          <img className='beach-background' src="/images/beach-background.jpg" alt=''/>
             <div className='splash-container'>
 
               <p className='title'> Welcome to Dive Events! </p>
@@ -17,6 +16,7 @@ const SplashPage = () => {
               <p className='info-p'> Please look below for upcoming diving events! </p>
 
           </div>
+              <img className='beach-background' src="/images/beach-background.jpg" alt=''/>
         </div>
 
       </>
