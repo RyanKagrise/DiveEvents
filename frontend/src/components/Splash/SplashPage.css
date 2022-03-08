@@ -1,15 +1,23 @@
+.beach-background {
+  z-index: 0;
+  position: absolute;
+  width: 100vh;
+}
+
 .splash-container {
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: grey;
   width: 100%;
-  height: 1000px;
+  height: 100vh;
 }
 
 .title {
   font: 40px solid serif;
   color: blue;
+  font-weight: bold;
 }
 .tank-photo {
   display: flex;
@@ -17,4 +25,15 @@
   width: 20%;
   border: 3px white solid;
   border-radius: 20%;
+}
+
+.sign-up {
+  margin: 20px;
+  border: solid white 3px;
+  border-radius: 10%;
+  width: 10vh;
+}
+
+.info-p {
+  font-size: 20px;
 }

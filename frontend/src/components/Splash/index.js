@@ -8,10 +8,15 @@ const SplashPage = () => {
   if(sessionUser) {
     return (
       <>
-        <div className='splash-container'>
+        <div>
+          <img className='beach-background' src="/images/beach-background.jpg" alt=''/>
+            <div className='splash-container'>
 
-          <p className='title'> Welcome to Dive Events!</p>
-          <img className='tank-photo' src="/images/scuba-background.jpg"/>
+              <p className='title'> Welcome to Dive Events! </p>
+              <img className='tank-photo' src="/images/scuba-background.jpg" alt=''/>
+              <p className='info-p'> Please look below for upcoming diving events! </p>
+
+          </div>
         </div>
 
       </>
@@ -19,10 +24,12 @@ const SplashPage = () => {
     )
   }
   return (
-      <div>
+      <div className="splash-container">
 
-        <h2> FIGURE IT OUT </h2>
-        <NavLink to='/signup'><button>Sign up here!</button></NavLink>
+        <p className='title'> Welcome to Dive Events! </p>
+        <img className='tank-photo' src="/images/scuba-background.jpg" alt=''/>
+        <NavLink to='/signup'><button className='sign-up'>Sign up here!</button></NavLink>
+        <p className='info-p'> Please sign up to see upcoming diving events! </p>
       </div>
   )
 }

@@ -1,0 +1,9 @@
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  border: 5px solid white;
+  border-radius: 2%;
+  width: 100%;
+  box-sizing: border-box;
+}
