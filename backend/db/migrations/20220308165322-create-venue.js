@@ -1,26 +1,31 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Venues', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.VARCHAR(50),
-        allowNull: false,
-        unique: true
-      },
-      email: {
-        type: Sequelize.VARCHAR(50),
-        allowNull: false,
-        unique: true
-      },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
+      name: {
+        type: Sequelize.VARCHAR,
         allowNull: false
+      },
+      address: {
+        type: Sequelize.VARCHAR,
+        allowNull: false
+      },
+      city: {
+        type: Sequelize.VARCHAR,
+        allowNull: false
+      },
+      state: {
+        type: Sequelize.VARCHAR,
+        allowNull: false
+      },
+      zipCode: {
+        type: Sequelize.VARCHAR
       },
       createdAt: {
         allowNull: false,
@@ -34,8 +39,7 @@ module.exports = {
       }
     });
   },
-
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Venues');
   }
 };
