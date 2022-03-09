@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false
     },
+    region: {
+      type: DataTypes.STRING(25),
+      allowNull: false
+    },
     content: {
       type: DataTypes.STRING(255),
       allowNull: false
@@ -28,7 +32,6 @@ module.exports = (sequelize, DataTypes) => {
   Event.associate = function(models) {
     // associations can be defined here
     Event.belongsTo(models.User, { foreignKey: "hostId" });
-    Event.belongsTo(models.Venue, { foreignKey: "venueId" });
     Event.hasMany(models.Category, { foreignKey: "eventId" });
     Event.hasMany(models.Ticket, { foreignKey: "eventId" });
   };
