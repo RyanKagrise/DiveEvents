@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf"
 const GET_EVENTS = 'events/getEvents';
 const GET_EVENT = 'events/getEvent';
 const CREATE_EVENT = 'events/createEvent';
-const EDIT_EVENT = 'events/editEvent';
+
 const DELETE_EVENT = 'events/deleteEvent';
 
 
@@ -30,12 +30,12 @@ const createEvent = newEvent => {
   }
 }
 
-const editEvent = editedEvent => {
-  return {
-    type: EDIT_EVENT,
-    editedEvent
-  }
-}
+// const editEvent = editedEvent => {
+//   return {
+//     type: EDIT_EVENT,
+//     editedEvent
+//   }
+// }
 
 const deleteEvent = deletedEvent => {
   return {
@@ -79,8 +79,13 @@ const eventsReducer = (state = initialState, action) => {
     }
 
     case GET_EVENT: {
-      newState.event = action.event;
-      return newState;
+      return {
+        ...state,
+        [action.event.id]: {
+          ...state[action.event.id],
+          ...action.event,
+        },
+      };
     }
 
     default:

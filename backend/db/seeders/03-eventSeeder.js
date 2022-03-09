@@ -30,7 +30,6 @@ module.exports = {
           name: 'Hookipa Lookout',
           date: '2022-04-25',
           region: 'North',
-
           content: 'This is for hardened veterans only. Expecting light winds, we will launch from Kahana park!',
           capacity: 5,
         },
