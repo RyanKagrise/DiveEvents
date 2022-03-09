@@ -15,9 +15,9 @@ const EventsList = () => {
     dispatch(fetchEvents());
   }, [dispatch]);
 
-  // if (!events) {
-  //   return null;
-  // }
+  if (!events) {
+    return null;
+  }
 
   return (
     <>
@@ -25,12 +25,13 @@ const EventsList = () => {
         <ul className='events-list'>
           {eventsArray.map((event) => (
             <Link
-            to={`/events/${event.id}`}
-            key={event.id}
-            style={{ textDecoration: "none" }}
+              to={`/api/events/${event.id}`}
+              key={event.id}
+              style={{ textDecoration: "none", padding: 25 }}
             >
               <h3 className='event-name'>{event?.name}</h3>
               <p className='event-date'>Date: {event?.date}</p>
+              <p className='event-content'>{event?.content}</p>
               <p className='event-capacity'>Capacity: {event?.capacity}</p>
             </Link>
           ))}

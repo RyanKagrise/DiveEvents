@@ -26,6 +26,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
+      content: {
+        type: Sequelize.STRING(255),
+        allowNull: false
+      },
       capacity: {
         type: Sequelize.INTEGER,
       },

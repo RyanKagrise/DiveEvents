@@ -14,6 +14,7 @@ module.exports = {
           venueId: 1,
           name: 'St Anthonys',
           date: '2022-04-05',
+          content: 'We will be doing a scooter dive out to the St Anthony boat wreck. This dive will be reserved for folks who have experience or have been there before!',
           capacity: 10,
         },
         {
@@ -21,6 +22,7 @@ module.exports = {
           venueId: 2,
           name: 'Mala Pier',
           date: '2022-04-15',
+          content: 'This beginner friendly dive is perfect for everyone! I heard the galapagos shark has been out on the edge of the reef!',
           capacity: 15,
         },
         {
@@ -28,6 +30,7 @@ module.exports = {
           venueId: 3,
           name: 'Hookipa Lookout',
           date: '2022-04-25',
+          content: 'This is for hardened veterans only. Expecting light winds, we will launch from Kahana park!',
           capacity: 5,
         },
         {
@@ -35,6 +38,7 @@ module.exports = {
           venueId: 1,
           name: 'Five Graves Caverns',
           date: '2022-04-10',
+          content: 'Looking for one or two people to join me on a night dive through the Makena/Five Graves cavern systems!',
           capacity: 2,
         },
       ], {});

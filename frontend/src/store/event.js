@@ -47,11 +47,20 @@ const deleteEvent = deletedEvent => {
 
 //thunk action creators
 export const fetchEvents = () => async dispatch => {
-  const res = await fetch(`/api/events`);
+  const res = await csrfFetch(`/api/events`);
 
   if (res.ok) {
     const events = await res.json();
     dispatch(getEvents(events));
+  }
+}
+
+export const fetchEvent = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/events/${id}`);
+
+  if (res.ok) {
+    const event = await res.json();
+    dispatch(getEvent(event));
   }
 }
 
@@ -66,6 +75,11 @@ const eventsReducer = (state = initialState, action) => {
 
     case GET_EVENTS: {
       action.events.forEach((event) => (newState[event.id] = event));
+      return newState;
+    }
+
+    case GET_EVENT: {
+      newState.event = action.event;
       return newState;
     }
 

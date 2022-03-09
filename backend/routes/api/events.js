@@ -15,5 +15,12 @@ router.get(
   })
 );
 
-
+router.get(
+  '/:id',
+  asyncHandler(async function(req, res) {
+    const eventId = req.params.id;
+    const event = await Event.findByPk(eventId);
+    return res.json(event);
+  })
+)
 module.exports = router;
