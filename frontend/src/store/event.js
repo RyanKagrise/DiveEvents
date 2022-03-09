@@ -57,15 +57,14 @@ export const fetchEvents = () => async dispatch => {
 
 //reducer
 
-const initialState = {
-  events: [],
-};
+const initialState = {};
 
 const eventsReducer = (state = initialState, action) => {
+  const newState = {...state};
+
   switch (action.type) {
 
     case GET_EVENTS: {
-      const newState = {};
       action.events.forEach((event) => (newState[event.id] = event));
       return newState;
     }
