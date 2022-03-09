@@ -4,3 +4,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+button {
+  background-color: white;
+  padding: 10px;
+  border-radius: 25px;
+  border: none;
+  font: 15px black sans-serif;
+  font-weight: bold;
+}

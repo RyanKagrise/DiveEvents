@@ -32,8 +32,8 @@ const SplashPage = () => {
 
         <p className='title'> Welcome to Dive Events! </p>
         <img className='tank-photo' src="/images/scuba-background.jpg" alt=''/>
-        <NavLink to='/signup'><button className='sign-up'>Sign up here!</button></NavLink>
-        <p className='info-p'> Please sign up to see upcoming diving events! </p>
+        <NavLink to='/signup'><button className='sign-up-link'>Sign up here!</button></NavLink>
+        <p className='info-p'> Please sign up/log in to see upcoming diving events! </p>
       </div>
   )
 }
