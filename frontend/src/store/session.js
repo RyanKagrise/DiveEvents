@@ -1,4 +1,5 @@
 import { csrfFetch } from './csrf';
+import { deleteEvents } from './event.js'
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
@@ -61,6 +62,7 @@ export const logout = () => async (dispatch) => {
     method: 'DELETE',
   });
   dispatch(removeUser());
+  dispatch(deleteEvents()); //removes from store, no db call
   return response;
 };
 
