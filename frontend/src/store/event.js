@@ -75,7 +75,7 @@ export const fetchEvent = (id) => async dispatch => {
   }
 }
 
-export const newEvent = (data) => async dispatch => {
+export const createNewEvent = (data) => async dispatch => {
   try {
     const res = await fetch(`/api/events`, {
       method: 'post',

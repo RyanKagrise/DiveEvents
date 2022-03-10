@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Splash from "./components/Splash"
 import EventPage from './components/EventPage'
+import CreateForm from './components/CreateForm'
 
 function App() {
   const dispatch = useDispatch();
@@ -24,12 +25,18 @@ function App() {
             <Route exact={true} path="/">
               <Splash />
             </Route>
-            <Route path='/events/:id'>
+            <Route path='/events/:id' exact>
               <EventPage />
             </Route>
-            <Route path="/signup">
+            <Route path="/signup" exact>
               <SignupFormPage />
             </Route>
+            <Route isLoaded={isLoaded} path='/events/create' exact>
+              <CreateForm />
+            </Route>
+            {/* <Route path='*' >
+              Page Not Found
+            </Route> */}
           </Switch>
         )}
       </div>

@@ -1,10 +1,10 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-
+const { handleValidationErrors } = require('../../utils/validation');
+const { requireAuth } = require('../../utils/auth');
 const { Event, User } = require('../../db/models');
 
-const eventValidators = require('../../validations/events')
 
 const router = express.Router();
 
@@ -36,5 +36,48 @@ router.get(
     }
   })
 )
+
+const createEventValidations = [
+  check("name")
+    .exists({ checkFalsy: true })
+    .withMessage("Name field can't be empty!"),
+  check("name")
+    .isLength({ max: 50 })
+    .withMessage("Name can't be longer than 50 characters!"),
+  check("date")
+    .exists({ checkFalsy: true })
+    .withMessage("Date field can't be empty!"),
+  check("region")
+    .exists({ checkFalsy: true})
+    .withMessage("Region field can't be empty!"),
+  check("region")
+    .isLength({ max: 25 })
+    .withMessage("Region can't be longer than 25 characters!"),
+  check("content")
+    .exists({ checkFalsy: true })
+    .withMessage("Description field can't be empty!"),
+  check("content")
+    .isLength({ max: 255 })
+    .withMessage("Description can't be longer than 255 characters!"),
+  check("capacity")
+    .exists({ checkFalsy: true })
+    .withMessage("Capacity field can't be empty"),
+  check("capacity")
+    .isNumeric({ checkFalsy: true })
+    .withMessage("Capacity has to be a number!"),
+  handleValidationErrors,
+];
+
+router.post(
+  '/',
+  requireAuth,
+  createEventValidations,
+  asyncHandler(async function (req, res, next) {
+    const eventDetails = req.body;
+    const event = await Event.create(eventDetails);
+    res.json(event);
+  })
+);
+
 
 module.exports = router;

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     region: {
@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     capacity: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
   }, {});
   Event.associate = function(models) {

@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false
       },
       date: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false
       },
       region: {
@@ -31,6 +31,7 @@ module.exports = {
       },
       capacity: {
         type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
