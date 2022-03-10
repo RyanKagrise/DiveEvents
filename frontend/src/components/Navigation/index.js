@@ -26,10 +26,9 @@ function Navigation({ isLoaded }){
     <ul>
       <li className='nav-links'>
         <div>
-          <NavLink exact to="/">Home</NavLink>
-        </div>
-        <div>
+          <NavLink className='signup-link' exact to="/">Home</NavLink>
           {isLoaded && sessionLinks}
+          {/* <EventPage /> */}
         </div>
       </li>
     </ul>

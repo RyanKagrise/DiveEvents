@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf"
 const GET_EVENTS = 'events/getEvents';
 const GET_EVENT = 'events/getEvent';
 const CREATE_EVENT = 'events/createEvent';
-const EDIT_EVENT = 'events/editEvent';
+
 const DELETE_EVENT = 'events/deleteEvent';
 
 
@@ -30,12 +30,12 @@ const createEvent = newEvent => {
   }
 }
 
-const editEvent = editedEvent => {
-  return {
-    type: EDIT_EVENT,
-    editedEvent
-  }
-}
+// const editEvent = editedEvent => {
+//   return {
+//     type: EDIT_EVENT,
+//     editedEvent
+//   }
+// }
 
 const deleteEvent = deletedEvent => {
   return {
@@ -47,11 +47,20 @@ const deleteEvent = deletedEvent => {
 
 //thunk action creators
 export const fetchEvents = () => async dispatch => {
-  const res = await fetch(`/api/events`);
+  const res = await csrfFetch(`/api/events`);
 
   if (res.ok) {
     const events = await res.json();
     dispatch(getEvents(events));
+  }
+}
+
+export const fetchEvent = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/events/${id}`);
+
+  if (res.ok) {
+    const event = await res.json();
+    dispatch(getEvent(event));
   }
 }
 
@@ -67,6 +76,16 @@ const eventsReducer = (state = initialState, action) => {
     case GET_EVENTS: {
       action.events.forEach((event) => (newState[event.id] = event));
       return newState;
+    }
+
+    case GET_EVENT: {
+      return {
+        ...state,
+        [action.event.id]: {
+          ...state[action.event.id],
+          ...action.event,
+        },
+      };
     }
 
     default:

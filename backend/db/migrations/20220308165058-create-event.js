@@ -13,17 +13,20 @@ module.exports = {
         references: { model: "Users" },
         allowNull: false
       },
-      venueId: {
-        type: Sequelize.INTEGER,
-        references: { model: "Venues" },
-        allowNull: false
-      },
       name: {
         type: Sequelize.STRING(50),
         allowNull: false
       },
       date: {
         type: Sequelize.DATE,
+        allowNull: false
+      },
+      region: {
+        type: Sequelize.STRING(25),
+        allowNull: false
+      },
+      content: {
+        type: Sequelize.STRING(255),
         allowNull: false
       },
       capacity: {

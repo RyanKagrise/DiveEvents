@@ -4,4 +4,9 @@ ul.events-list {
   margin-bottom: 20%;
   background-color: white;
   border-radius: 25px;
+  text-align: center;
+}
+
+ul {
+  padding-inline-start: 0px;
 }
