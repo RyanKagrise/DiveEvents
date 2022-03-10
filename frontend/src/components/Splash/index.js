@@ -5,37 +5,39 @@ import "./SplashPage.css"
 
 
 const SplashPage = () => {
+  
   const sessionUser = useSelector(state => state.session.user);
 
 
-  if(sessionUser) {
+  if (sessionUser) {
     return (
       <>
         <div>
-            <div className='splash-container'>
+          <div className='splash-container'>
 
-              <p className='title'> Welcome to Dive Events! </p>
-              <img className='tank-photo' src="/images/scuba-background.jpg" alt=''/>
-              <p className='info-p'> Please look below for upcoming diving events! </p>
-            </div>
-            <div>
-              <EventsList />
-            </div>
+            <p className='title'> Welcome to Dive Events! </p>
+            <img className='tank-photo' src="/images/scuba-background.jpg" alt='' />
+            <p className='info-p'> Please look below for upcoming diving events! </p>
+          </div>
+          <div>
+            <EventsList />
+          </div>
         </div>
 
       </>
 
     )
-  }
-  return (
+  } else {
+    return (
       <div className="splash-container">
 
         <p className='title'> Welcome to Dive Events! </p>
-        <img className='tank-photo' src="/images/scuba-background.jpg" alt=''/>
+        <img className='tank-photo' src="/images/scuba-background.jpg" alt='' />
         <NavLink to='/signup'><button className='sign-up-link'>Sign up here!</button></NavLink>
         <p className='info-p'> Please sign up/log in to see upcoming diving events! </p>
       </div>
-  )
+    )
+  }
 }
 
 

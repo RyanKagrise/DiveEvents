@@ -5,8 +5,9 @@ import { ValidationError } from '../components/utils/ValidationError'
 const GET_EVENTS = 'events/getEvents';
 const GET_EVENT = 'events/getEvent';
 const CREATE_EVENT = 'events/createEvent';
-
+const EDIT_EVENT = 'events/editEvent'
 const DELETE_EVENT = 'events/deleteEvent';
+const DELETE_EVENTS = 'events/deleteEvents'
 
 
 //action creators
@@ -31,19 +32,28 @@ const createEvent = newEvent => {
   }
 }
 
-// const editEvent = editedEvent => {
-//   return {
-//     type: EDIT_EVENT,
-//     editedEvent
-//   }
-// }
-
-const deleteEvent = deletedEvent => {
+const editEvent = editedEvent => {
   return {
-    type: DELETE_EVENT,
-    deletedEvent
+    type: EDIT_EVENT,
+    editedEvent
   }
 }
+
+const deleteEvent = id => {
+  return {
+    type: DELETE_EVENT,
+    id
+  }
+}
+
+//referenced in session.js store
+export const deleteEvents = () => {
+  return {
+    type: DELETE_EVENTS
+  }
+}
+
+
 
 
 //thunk action creators
@@ -100,6 +110,34 @@ export const newEvent = (data) => async dispatch => {
   }
 };
 
+export const updateEvent = (event) => async dispatch => {
+  const res = await csrfFetch(`/api/events/${event.id}`, {
+    method: 'put',
+    headers: {
+      'ContentType': 'application/json'
+    },
+    body: JSON.stringify(event)
+  });
+  if (res.ok) {
+    const editedEvent = await res.json();
+    dispatch(editEvent(editedEvent));
+    return editedEvent;
+  }
+}
+
+export const removeEvent = (event) => async dispatch => {
+  const res = await csrfFetch(`/api/events/${event.id}`, {
+    method: 'delete'
+  });
+  if (res.ok) {
+    const removedEvent = await res.json();
+    dispatch(deleteEvent(removedEvent.id))
+    return removedEvent;
+  }
+  return res;
+}
+
+
 //reducer
 
 const initialState = {};
@@ -131,10 +169,25 @@ const eventsReducer = (state = initialState, action) => {
       };
     }
 
+    case EDIT_EVENT:
+      return {
+        newState,
+        [action.event.id]: action.event
+      }
+
+    case DELETE_EVENT: {
+      delete newState[action.id];
+      return newState;
+    }
+
+    case DELETE_EVENTS: {
+      return {};
+    }
+
     default:
       return state;
   }
-}
+};
 
 
 export default eventsReducer;
