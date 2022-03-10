@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf"
+import { ValidationError } from '../components/utils/ValidationError'
 
 //action variables
 const GET_EVENTS = 'events/getEvents';
@@ -64,6 +65,41 @@ export const fetchEvent = (id) => async dispatch => {
   }
 }
 
+export const newEvent = (data) => async dispatch => {
+  try {
+    const res = await fetch(`/api/events`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      let error;
+      if (res.status === 422) {
+        error = await res.json();
+        throw new ValidationError(error.errors, res.statusText);
+      } else {
+        let errorJSON;
+        error = await res.text();
+        try {
+          errorJSON = JSON.parse(error);
+        } catch {
+          throw new Error(error);
+        }
+        throw new Error(`${errorJSON.title}: ${errorJSON.message}`);
+      }
+    }
+
+    const event = await res.json();
+    dispatch(createEvent(event));
+    return event;
+  } catch (error) {
+    throw error;
+  }
+};
+
 //reducer
 
 const initialState = {};
@@ -85,6 +121,13 @@ const eventsReducer = (state = initialState, action) => {
           ...state[action.event.id],
           ...action.event,
         },
+      };
+    }
+
+    case CREATE_EVENT: {
+      return {
+        ...state,
+        [action.event.id]: action.event,
       };
     }
 
