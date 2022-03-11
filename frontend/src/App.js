@@ -8,6 +8,7 @@ import Splash from "./components/Splash"
 import EventPage from './components/EventPage'
 import CreateForm from './components/CreateForm'
 import EventsList from "./components/EventsList";
+import EditForm from './components/EditForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
             <Route isLoaded={isLoaded} path="/events/" exact>
               <EventsList />
           </Route>
+            <Route path='/events/:id/edit' exact>
+              <EditForm />
+            </Route>
             <Route path='/events/:id' exact>
               <EventPage />
             </Route>

@@ -6,7 +6,7 @@ import { ErrorMessage } from '../utils/ErrorMessage'
 import { createNewEvent } from '../../store/event'
 import * as sessionActions from '../../store/session';
 
-function CreateForm() {
+const CreateForm = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 

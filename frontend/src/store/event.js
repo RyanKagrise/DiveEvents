@@ -79,9 +79,6 @@ export const createNewEvent = (data) => async dispatch => {
   try {
     const res = await csrfFetch(`/api/events`, {
       method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(data),
     });
 
@@ -113,9 +110,6 @@ export const createNewEvent = (data) => async dispatch => {
 export const updateEvent = (event) => async dispatch => {
   const res = await csrfFetch(`/api/events/${event.id}`, {
     method: 'put',
-    headers: {
-      'ContentType': 'application/json'
-    },
     body: JSON.stringify(event)
   });
   if (res.ok) {
@@ -134,7 +128,7 @@ export const removeEvent = (event) => async dispatch => {
     dispatch(deleteEvent(removedEvent.id))
     return removedEvent;
   }
-  return res;
+  return false;
 }
 
 
@@ -148,12 +142,15 @@ const eventsReducer = (state = {}, action) => {
       });
       return newState;
     }
-    case CREATE_EVENT:
+
+    case CREATE_EVENT: {
       const newState = {
         ...state,
         [action.event.id]: action.event,
       };
       return newState;
+    }
+
     case GET_EVENT: {
       return {
         ...state,
@@ -163,15 +160,17 @@ const eventsReducer = (state = {}, action) => {
         },
       };
     }
+
     case DELETE_EVENT: {
       const newState = {...state};
       delete newState[action.id];
       return newState
     }
+
     case EDIT_EVENT:
       return {
         ...state,
-        [action.event.id]: action.event
+        [action.editedEvent.id]: action.editedEvent
       }
     default:
       return state;
