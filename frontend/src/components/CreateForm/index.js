@@ -15,7 +15,6 @@ const CreateForm = () => {
   const [region, setRegion] = useState('');
   const [content, setContent] = useState('');
   const [capacity, setCapacity] = useState('');
-  const {category, setCategory} = useState('')
   const [errors, setErrors] = useState([]);
   const [errorMessages, setErrorMessages] = useState({});
   let history = useHistory();
@@ -59,6 +58,7 @@ const CreateForm = () => {
   }
 
   return (
+    <>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -69,7 +69,7 @@ const CreateForm = () => {
           <ErrorMessage message={errorMessages.overall} />
         </div>
         <div className='PLACEHOLDER'>
-          <label className='PLACEHOLDER'>
+          <label className='PLACEHOLDER'> Name:
             <input
               type='text'
               placeholder='Name'
@@ -78,7 +78,7 @@ const CreateForm = () => {
               required
             />
           </label>
-          <label className='PLACEHOLDER'>
+          <label className='PLACEHOLDER'> Date
             <input
               type='date'
               placeholder='yyyy-mm-dd'
@@ -87,7 +87,7 @@ const CreateForm = () => {
               required
             />
           </label>
-          <label className='PLACEHOLDER'>
+          <label className='PLACEHOLDER'> Region
             <input
               type='text'
               placeholder='Region'
@@ -96,8 +96,8 @@ const CreateForm = () => {
               required
             />
           </label>
-          <label className='PLACEHOLDER'>
-            <input
+          <label className='PLACEHOLDER'> Description
+            <textarea
               type='text'
               placeholder='Description'
               value={content}
@@ -105,7 +105,7 @@ const CreateForm = () => {
               required
             />
           </label>
-          <label className='PLACEHOLDER'>
+          <label className='PLACEHOLDER'> Capacity
             <input
               type='number'
               placeholder='Capacity'
@@ -122,6 +122,8 @@ const CreateForm = () => {
           > Create New Event </button>
         </div>
       </form>
+      {/* <CreateCategory /> */}
+    </>
   )
 
 };
