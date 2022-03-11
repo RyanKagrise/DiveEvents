@@ -16,12 +16,12 @@ const EventsList = () => {
 
 
 
-  console.log('blakkkkkkkkkkkkkke', events['1'])
-  console.log('SEPERATEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD')
+  console.log('eventssssssssssss', events['1'])
+
 
   console.log('categoriesssssssssssssssssssssssss', categoriesArray)
 
-  console.log('SEPERATEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD')
+
   const eventsArray = Object.values(events);
   //const categoriesArray = Object.values(categories);
 
@@ -61,7 +61,7 @@ const EventsList = () => {
               <div className='PLACEHOLDER'>
                 <div>{event.Categories.map((category) => (
                   <p>
-                  
+
                   </p>
               ))}</div>
               </div>
