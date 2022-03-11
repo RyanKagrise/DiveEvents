@@ -42,9 +42,9 @@ function App() {
             <Route path="/signup" exact>
               <SignupFormPage />
             </Route>
-            {/* <Route path='*' >
-              Page Not Found
-            </Route> */}
+            <Route path='*'>
+              <div> 404! PAGE NOT FOUND! 404!</div>
+            </Route>
           </Switch>
         )}
       </div>
