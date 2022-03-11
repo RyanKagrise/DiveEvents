@@ -19,7 +19,7 @@ const EventsList = () => {
 
 
   useEffect(() => {
-    dispatch(fetchEvents());
+  dispatch(fetchEvents());
   }, [dispatch]);
 
   if (!events) {
@@ -52,8 +52,8 @@ const EventsList = () => {
               <p className='event-content'>Description: {event?.content}</p>
               <p className='event-capacity'>Capacity: {event?.capacity}</p>
               <div className='PLACEHOLDER'> Categories:
-                {event.Categories?.map((category) => (
-                <p key={category.id}>
+                {event?.Categories?.map((category) => (
+                <p key={category?.id}>
                   {category?.type}
                 </p>
                 ))}

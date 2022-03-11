@@ -17,7 +17,6 @@ router.get(
         { model: Category }
       ]
     });
-    console.log(events)
     return res.json(events);
   }));
 
@@ -33,7 +32,12 @@ const eventDoesNotExist = (id) => {
 router.get(
   '/:id',
   asyncHandler(async function (req, res, next) {
-    const event = await Event.findByPk(req.params.id);
+    const event = await Event.findByPk(req.params.id, {
+      include: [
+        { model: User },
+        { model: Category }
+      ]
+    });
     if (event) {
       res.json(event);
     } else {
@@ -157,7 +161,7 @@ router.delete(
         err.status = 401;
         return err;
       }
-      res.json(event)
+      res.json(req.params.id)
     } else {
       next(eventDoesNotExist(req.params.id));
     }

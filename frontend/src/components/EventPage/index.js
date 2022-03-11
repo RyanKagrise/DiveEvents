@@ -20,6 +20,7 @@ const EventPage = () => {
 
   const event = useSelector((state) => state.event[eventId]);
 
+
   useEffect(() => {
     dispatch(fetchEvent(eventId));
   }, [dispatch]);
@@ -34,7 +35,7 @@ const EventPage = () => {
     destroyedEvent = await dispatch(removeEvent(payload))
       .catch(error => (console.log('error in delete')))
 
-    if (destroyedEvent.id) {
+    if (destroyedEvent) {
       history.push('/events');
     }
   }
@@ -101,6 +102,13 @@ const EventPage = () => {
             <p className='event-date'>Date: {event?.date}</p>
             <p className='event-content'>Description: {event?.content}</p>
             <p className='event-capacity'>Capacity: {event?.capacity}</p>
+            <ul className='PLACEHOLDER'> Categories:
+              {event?.Categories?.map((category) => (
+                <li key={category.id}>
+                  {category?.type}
+                </li>
+              ))}
+            </ul>
           </div>
           {editEventButton(event)}
         </div>

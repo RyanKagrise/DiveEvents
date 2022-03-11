@@ -15,6 +15,7 @@ const CreateForm = () => {
   const [region, setRegion] = useState('');
   const [content, setContent] = useState('');
   const [capacity, setCapacity] = useState('');
+  const {category, setCategory} = useState('')
   const [errors, setErrors] = useState([]);
   const [errorMessages, setErrorMessages] = useState({});
   let history = useHistory();
@@ -51,14 +52,9 @@ const CreateForm = () => {
     let createdEvent;
 
     try {
-      createdEvent = await dispatch(createNewEvent(newEvent));
+      createdEvent = await dispatch(createNewEvent(newEvent)).then(()=> history.push('/events'));
     } catch (error) {
-      history.push('/events/create')
-    }
-    if (createNewEvent) {
-      setErrorMessages({});
-      setErrors([]);
-      history.push('/events');
+      console.log(error)
     }
   }
 
