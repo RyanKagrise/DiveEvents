@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { fetchEvent } from '../../store/event'
 import { Redirect, NavLink, useHistory } from 'react-router-dom'
 import { removeEvent } from '../../store/event'
+
+
 import './EventPage.css'
 
 const EventPage = () => {
@@ -69,7 +71,7 @@ const EventPage = () => {
           <button
             onClick={() => setDeleteOption(true)}
           >
-            Delete
+            Delete Event
           </button>
         </>
       )
@@ -87,6 +89,53 @@ const EventPage = () => {
             Edit Event
           </NavLink>
           {showDeleteButton()}
+        </>
+      )
+    }
+  }
+
+  const createCategoryButton = () => {
+    if (!sessionUser) return;
+    if (sessionUser.id === event?.userId) {
+      return (
+      <>
+        <NavLink className='PLACEHOLDER' exact to='/categories/create'>Create Category</NavLink>
+      </>
+      );
+    }
+  };
+
+  const showDeleteButtonCategory = () => {
+    if (deleteOption === true) {
+      return (
+        <>
+          <ul>
+            <li>
+              <button
+                type='submit'
+                onClick={destroyEventButton}
+                className='PLACEHOLDER'
+              >
+                Delete Event
+              </button>
+              <button
+                type='submit'
+                onClick={() => setDeleteOption(false)}
+              >
+                Cancel Delete
+              </button>
+            </li>
+          </ul>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <button
+            onClick={() => setDeleteOption(true)}
+          >
+            Delete Event
+          </button>
         </>
       )
     }
@@ -111,6 +160,7 @@ const EventPage = () => {
             </ul>
           </div>
           {editEventButton(event)}
+          {createCategoryButton()}
         </div>
       </>
     )

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { ValidationError } from '../utils/ValidationError';
 import { ErrorMessage } from '../utils/ErrorMessage'
-import { createNewEvent } from '../../store/event'
+import { createNewCategory } from '../../store/category'
+import { fetchEvent } from '../../store/event'
 import * as sessionActions from '../../store/session';
 
 const CreateCategory = () => {
@@ -12,6 +13,7 @@ const CreateCategory = () => {
 
   const eventParam = useParams();
   const eventId = eventParam.id;
+  console.log(eventParam)
   const event = useSelector((state) => state.events[eventId]);
 
   const sessionUser = useSelector((state) => state.session.user);
@@ -37,17 +39,18 @@ const CreateCategory = () => {
     e.preventDefault();
 
     const newCategory = {
-      userId: session,
+      userId: sessionUser,
       type,
       eventId: eventId
     };
 
-    let newCategory;
+    let createdCategory;
     try {
-      newCategory = await dispatch()
+      createdCategory = await dispatch(createNewCategory(newCategory)).then(()=> history.push(`/event/${event?.Id})`));
+    } catch (error) {
+      console.log(error)
     }
-
-  })
+}
 
   return (
     <>
@@ -75,7 +78,7 @@ const CreateCategory = () => {
           disabled={errors.length > 0}
           className='PLACEHOLDER'
           >
-            Submit
+            Create New Category
           </button>
         </div>
       </form>

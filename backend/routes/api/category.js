@@ -7,6 +7,7 @@ const { Event, User, Category } = require('../../db/models');
 
 const router = express.Router();
 
+
 const categoryDoesNotExist = (id) => {
   const err = Error("This event does not exist!");
   err.errors = [`Event with the id of ${id} does not exist!`];

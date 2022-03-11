@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, NavLink } from 'react-router-dom';
 import { ValidationError } from '../utils/ValidationError';
 import { ErrorMessage } from '../utils/ErrorMessage'
 import { createNewEvent } from '../../store/event'
 import * as sessionActions from '../../store/session';
+
 
 const CreateForm = () => {
   const dispatch = useDispatch();
@@ -57,8 +58,11 @@ const CreateForm = () => {
     }
   }
 
+
+
   return (
     <>
+
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -122,7 +126,6 @@ const CreateForm = () => {
           > Create New Event </button>
         </div>
       </form>
-      {/* <CreateCategory /> */}
     </>
   )
 
