@@ -99,7 +99,7 @@ const EventPage = () => {
             <h2>{event?.name}</h2>
             {event ? <img className='event-photo' src='/images/eventPhoto.jpg' alt='' /> : null}
             <p className='event-date'>Date: {event?.date}</p>
-            <p className='event-content'>Date: {event?.content}</p>
+            <p className='event-content'>Description: {event?.content}</p>
             <p className='event-capacity'>Capacity: {event?.capacity}</p>
           </div>
           {editEventButton(event)}

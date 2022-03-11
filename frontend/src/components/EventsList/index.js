@@ -11,19 +11,12 @@ const EventsList = () => {
 
 
   const events = useSelector((state) => state.event);
-  const categoriesArray = useSelector((state) => state.event.Categories)
+
+
   const sessionUser = useSelector((state) => state.session.user);
 
-
-
-  console.log('eventssssssssssss', events['1'])
-
-
-  console.log('categoriesssssssssssssssssssssssss', categoriesArray)
-
-
   const eventsArray = Object.values(events);
-  //const categoriesArray = Object.values(categories);
+
 
   useEffect(() => {
     dispatch(fetchEvents());
@@ -56,14 +49,14 @@ const EventsList = () => {
             >
               <h3 className='event-name'>{event?.name}</h3>
               <p className='event-date'>Date: {event?.date}</p>
-              <p className='event-content'>{event?.content}</p>
+              <p className='event-content'>Description: {event?.content}</p>
               <p className='event-capacity'>Capacity: {event?.capacity}</p>
-              <div className='PLACEHOLDER'>
-                <div>{event.Categories.map((category) => (
-                  <p>
-
-                  </p>
-              ))}</div>
+              <div className='PLACEHOLDER'> Categories:
+                {event.Categories?.map((category) => (
+                <p key={category.id}>
+                  {category?.type}
+                </p>
+                ))}
               </div>
             </NavLink>
           ))}
