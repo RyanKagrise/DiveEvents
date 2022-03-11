@@ -11,10 +11,9 @@ const CreateCategory = () => {
   let history = useHistory();
   const dispatch = useDispatch();
 
-  const eventParam = useParams();
-  const eventId = eventParam.id;
-  console.log(eventParam)
-  const event = useSelector((state) => state.events[eventId]);
+  const eventParams = useParams();
+  const eventId = eventParams.id;
+  const event = useSelector((state) => state.event[eventId]);
 
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -23,7 +22,7 @@ const CreateCategory = () => {
   }, [dispatch]);
 
   const [type, setType] = useState('');
-  const [errors, setErrors] = useState('');
+  const [errors, setErrors] = useState([]);
   const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
@@ -41,12 +40,12 @@ const CreateCategory = () => {
     const newCategory = {
       userId: sessionUser,
       type,
-      eventId: eventId
+      eventId
     };
 
     let createdCategory;
     try {
-      createdCategory = await dispatch(createNewCategory(newCategory)).then(()=> history.push(`/event/${event?.Id})`));
+      createdCategory = await dispatch(createNewCategory(newCategory)).then(()=> history.push('/events/'));
     } catch (error) {
       console.log(error)
     }

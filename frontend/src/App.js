@@ -25,7 +25,7 @@ function App() {
         <Navigation isLoaded={isLoaded} />
         {isLoaded && (
           <Switch>
-            <Route isLoaded={isLoaded} path='/categories/create' exact>
+            <Route isLoaded={isLoaded} path='/events/:id/categories/create' exact>
               <CreateCategory />
             </Route>
             <Route isLoaded={isLoaded} path='/events/create' exact>
