@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Event = sequelize.define('Event', {
-    hostId: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false
     },
     region: {
@@ -22,12 +22,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     capacity: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
   }, {});
   Event.associate = function(models) {
     // associations can be defined here
-    Event.belongsTo(models.User, { foreignKey: "hostId" });
+    Event.belongsTo(models.User, { foreignKey: "userId" });
     Event.hasMany(models.Category, { foreignKey: "eventId" });
     Event.hasMany(models.Ticket, { foreignKey: "eventId" });
   };

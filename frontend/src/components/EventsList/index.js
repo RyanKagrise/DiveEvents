@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchEvents } from '../../store/event';
@@ -9,6 +9,8 @@ const EventsList = () => {
   const dispatch = useDispatch();
 
   const events = useSelector((state) => state.event);
+  const sessionUser = useSelector((state) => state.session.user);
+
 
   const eventsArray = Object.values(events);
 
@@ -20,8 +22,19 @@ const EventsList = () => {
     return null;
   }
 
+  const createEventButton = () => {
+    if (!sessionUser) {
+      return null;
+    } else {
+      return (
+        <NavLink className="PLACEHOLDER" to="/events/create">Create Event</NavLink>
+      );
+    }
+  };
+
   return (
     <>
+      {createEventButton()}
       <div className='events-links'>
         <ul className='events-list'>
           {eventsArray.map((event) => (

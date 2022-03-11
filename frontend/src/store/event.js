@@ -75,13 +75,10 @@ export const fetchEvent = (id) => async dispatch => {
   }
 }
 
-export const newEvent = (data) => async dispatch => {
+export const createNewEvent = (data) => async dispatch => {
   try {
-    const res = await fetch(`/api/events`, {
+    const res = await csrfFetch(`/api/events`, {
       method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(data),
     });
 
@@ -113,9 +110,6 @@ export const newEvent = (data) => async dispatch => {
 export const updateEvent = (event) => async dispatch => {
   const res = await csrfFetch(`/api/events/${event.id}`, {
     method: 'put',
-    headers: {
-      'ContentType': 'application/json'
-    },
     body: JSON.stringify(event)
   });
   if (res.ok) {
@@ -134,21 +128,26 @@ export const removeEvent = (event) => async dispatch => {
     dispatch(deleteEvent(removedEvent.id))
     return removedEvent;
   }
-  return res;
+  return false;
 }
 
 
 //reducer
-
-const initialState = {};
-
-const eventsReducer = (state = initialState, action) => {
-  const newState = {...state};
-
+const eventsReducer = (state = {}, action) => {
   switch (action.type) {
-
     case GET_EVENTS: {
-      action.events.forEach((event) => (newState[event.id] = event));
+      const newState = { ...state };
+      action.events.forEach((event) => {
+        newState[event.id] = event;
+      });
+      return newState;
+    }
+
+    case CREATE_EVENT: {
+      const newState = {
+        ...state,
+        [action.event.id]: action.event,
+      };
       return newState;
     }
 
@@ -162,32 +161,22 @@ const eventsReducer = (state = initialState, action) => {
       };
     }
 
-    case CREATE_EVENT: {
-      return {
-        ...state,
-        [action.event.id]: action.event,
-      };
+    case DELETE_EVENT: {
+      const newState = {...state};
+      delete newState[action.id];
+      return newState
     }
 
     case EDIT_EVENT:
       return {
-        newState,
-        [action.event.id]: action.event
+        ...state,
+        [action.editedEvent.id]: action.editedEvent
       }
-
-    case DELETE_EVENT: {
-      delete newState[action.id];
-      return newState;
-    }
-
-    case DELETE_EVENTS: {
-      return {};
-    }
-
     default:
       return state;
   }
 };
+
 
 
 export default eventsReducer;

@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-import { ValidationError } from '../utils/ValidationError';
-import { ErrorMessage } from '../utils/ErrorMessage'
-import { createNewEvent } from '../../store/event'
-import * as sessionActions from '../../store/session';
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory, useParams } from 'react-router-dom';
+import { ErrorMessage } from '../utils/ErrorMessage';
+import { updateEvent } from '../../store/event';
 
-const CreateForm = () => {
+const EditForm = () => {
+  let history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-  const [region, setRegion] = useState('');
-  const [content, setContent] = useState('');
-  const [capacity, setCapacity] = useState('');
+  const eventParam = useParams();
+  const eventId = eventParam.id;
+  const event = useSelector((state) => state.event[eventId]);
+
+
+  const [name, setName] = useState(event?.name);
+  const [date, setDate] = useState(event?.date);
+  const [region, setRegion] = useState(event?.region);
+  const [content, setContent] = useState(event?.content);
+  const [capacity, setCapacity] = useState(event?.capacity);
   const [errors, setErrors] = useState([]);
   const [errorMessages, setErrorMessages] = useState({});
-  let history = useHistory();
 
   useEffect(() => {
     const validationErrors = [];
@@ -36,10 +39,12 @@ const CreateForm = () => {
     setErrors(validationErrors);
   }, [name, region, content]);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newEvent = {
+    const updatedEvent = {
+      id: event.id,
       userId: sessionUser.id,
       name,
       date,
@@ -47,22 +52,21 @@ const CreateForm = () => {
       content,
       capacity,
     };
-
-    let createdEvent;
-
+    let editedEvent;
     try {
-      createdEvent = await dispatch(createNewEvent(newEvent));
+      editedEvent = dispatch(updateEvent(updatedEvent));
     } catch (error) {
-      history.push('/events/create')
+      console.log('Error in edit form!')
     }
-    if (createNewEvent) {
+    if (editedEvent) {
       setErrorMessages({});
       setErrors([]);
       history.push('/events');
     }
-  }
+  };
 
   return (
+    <>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -74,6 +78,7 @@ const CreateForm = () => {
         </div>
         <div className='PLACEHOLDER'>
           <label className='PLACEHOLDER'>
+            <div className='PLACEHOLDER'>Name</div>
             <input
               type='text'
               placeholder='Name'
@@ -83,6 +88,7 @@ const CreateForm = () => {
             />
           </label>
           <label className='PLACEHOLDER'>
+            <div className='PLACEHOLDER'>Date</div>
             <input
               type='date'
               placeholder='yyyy-mm-dd'
@@ -92,6 +98,7 @@ const CreateForm = () => {
             />
           </label>
           <label className='PLACEHOLDER'>
+            <div className='PLACEHOLDER'>Region</div>
             <input
               type='text'
               placeholder='Region'
@@ -101,33 +108,38 @@ const CreateForm = () => {
             />
           </label>
           <label className='PLACEHOLDER'>
+            <div className='PLACEHOLDER'>Description</div>
             <input
               type='text'
               placeholder='Description'
               value={content}
               onChange={(e) => setContent(e.target.value)}
               required
-            />
+              />
           </label>
           <label className='PLACEHOLDER'>
+            <div className='PLACEHOLDER'>Capacity</div>
             <input
-              type='number'
+              type='text'
               placeholder='Capacity'
               value={capacity}
               onChange={(e) => setCapacity(e.target.value)}
               required
-            />
+              />
           </label>
 
           <button
             type='submit'
             disabled={errors.length > 0}
             className='PLACEHOLDER'
-          > Create New Event </button>
+            >
+            Update Event
+          </button>
         </div>
       </form>
+    </>
   )
-
 };
 
-export default CreateForm;
+
+export default EditForm;
