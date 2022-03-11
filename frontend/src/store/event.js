@@ -77,7 +77,7 @@ export const fetchEvent = (id) => async dispatch => {
 
 export const createNewEvent = (data) => async dispatch => {
   try {
-    const res = await fetch(`/api/events`, {
+    const res = await csrfFetch(`/api/events`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -139,19 +139,21 @@ export const removeEvent = (event) => async dispatch => {
 
 
 //reducer
-
-const initialState = {};
-
-const eventsReducer = (state = initialState, action) => {
-  const newState = {...state};
-
+const eventsReducer = (state = {}, action) => {
   switch (action.type) {
-
     case GET_EVENTS: {
-      action.events.forEach((event) => (newState[event.id] = event));
+      const newState = { ...state };
+      action.events.forEach((event) => {
+        newState[event.id] = event;
+      });
       return newState;
     }
-
+    case CREATE_EVENT:
+      const newState = {
+        ...state,
+        [action.event.id]: action.event,
+      };
+      return newState;
     case GET_EVENT: {
       return {
         ...state,
@@ -161,33 +163,21 @@ const eventsReducer = (state = initialState, action) => {
         },
       };
     }
-
-    case CREATE_EVENT: {
-      return {
-        ...state,
-        [action.event.id]: action.event,
-      };
+    case DELETE_EVENT: {
+      const newState = {...state};
+      delete newState[action.id];
+      return newState
     }
-
     case EDIT_EVENT:
       return {
-        newState,
+        ...state,
         [action.event.id]: action.event
       }
-
-    case DELETE_EVENT: {
-      delete newState[action.id];
-      return newState;
-    }
-
-    case DELETE_EVENTS: {
-      return {};
-    }
-
     default:
       return state;
   }
 };
+
 
 
 export default eventsReducer;

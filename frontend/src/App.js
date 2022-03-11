@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import Splash from "./components/Splash"
 import EventPage from './components/EventPage'
 import CreateForm from './components/CreateForm'
+import EventsList from "./components/EventsList";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,17 +23,20 @@ function App() {
         <Navigation isLoaded={isLoaded} />
         {isLoaded && (
           <Switch>
-            <Route exact={true} path="/">
+            <Route isLoaded={isLoaded} path='/events/create' exact>
+              <CreateForm />
+            </Route>
+            <Route path="/" exact>
               <Splash />
             </Route>
+            <Route isLoaded={isLoaded} path="/events/" exact>
+              <EventsList />
+          </Route>
             <Route path='/events/:id' exact>
               <EventPage />
             </Route>
             <Route path="/signup" exact>
               <SignupFormPage />
-            </Route>
-            <Route isLoaded={isLoaded} path='/events/create' exact>
-              <CreateForm />
             </Route>
             {/* <Route path='*' >
               Page Not Found

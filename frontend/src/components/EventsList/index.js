@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { fetchEvents } from '../../store/event';
@@ -27,9 +27,7 @@ const EventsList = () => {
       return null;
     } else {
       return (
-        <NavLink className="PLACEHOLDER" exact to="/events/create">
-          Create Event
-        </NavLink>
+        <NavLink className="PLACEHOLDER" to="/events/create">Create Event</NavLink>
       );
     }
   };

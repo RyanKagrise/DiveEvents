@@ -51,19 +51,18 @@ function CreateForm() {
     let createdEvent;
 
     try {
-      createdEvent = dispatch(createNewEvent(newEvent));
+      createdEvent = await dispatch(createNewEvent(newEvent));
     } catch (error) {
       history.push('/events/create')
     }
     if (createNewEvent) {
       setErrorMessages({});
       setErrors([]);
-      history.push('/');
+      history.push('/events');
     }
   }
 
   return (
-    <>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -127,7 +126,6 @@ function CreateForm() {
           > Create New Event </button>
         </div>
       </form>
-    </>
   )
 
 };

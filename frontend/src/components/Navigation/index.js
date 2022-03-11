@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
+import EventsList from '../EventsList';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -11,7 +12,15 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+    <>
+      <div>
+        <ProfileButton user={sessionUser} />
+      </div>
+      <div>
+        <NavLink className='PLACEHOLDER' exact to ='/events'>Events</NavLink>
+      </div>
+    </>
+
     );
   } else {
     sessionLinks = (

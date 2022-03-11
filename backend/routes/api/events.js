@@ -11,7 +11,11 @@ const router = express.Router();
 router.get(
   '/',
   asyncHandler(async function(_req, res) {
-    const events = await Event.findAll();
+    const events = await Event.findAll({
+      include: {
+        model: User
+      }
+    });
     return res.json(events);
   })
 );
@@ -79,5 +83,62 @@ router.post(
   })
 );
 
+router.put(
+  '/:id',
+  requireAuth,
+  asyncHandler(async function (req, res, next) {
+    const eventId = req.body.id;
+    const userId = req.body.userId;
+    const name = req.body.name;
+    const date = req.body.date;
+    const region = req.body.region;
+    const content = req.body.content;
+    const capacity = req.body.capacity;
+
+    const event = await Event.findByPk(eventId);
+    if (event) {
+      if (userId === event.userId) {
+      event.name = name;
+      event.date = date;
+      event.region = region;
+      event.content = content;
+      event.capacity = capacity;
+      await event.save();
+      res.json(event);
+    } else {
+      const err = Error('Unauthorized user');
+      err.errors = ['unauthorized edit'];
+      err.title = 'User not authorized to edit';
+      err.status = 401;
+      return err;
+      }
+    } else {
+      next(eventDoesNotExist(req.body.id))
+    }
+  })
+);
+
+router.delete(
+  '/:id',
+  requireAuth,
+  asyncHandler(async function (req, res, next) {
+    const userId = req.user.id;
+    const event = await Event.findByPk(req.params.id);
+    if (event) {
+      if (userId === event.userId) {
+        await event.destroy();
+      } else {
+        const err = Error('Unauthorized user');
+        err.errors = ['unauthorized delete'];
+        err.title = 'User not authorized to delete';
+        err.status = 401;
+        return err;
+      }
+      res.json(event)
+    } else {
+      next(eventDoesNotExist(req.params.id));
+    }
+  })
+)
 
 module.exports = router;

@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import EventsList from '../EventsList'
 import "./SplashPage.css"
 
 
@@ -18,9 +17,6 @@ const SplashPage = () => {
             <p className='title'> Welcome to Dive Events! </p>
             <img className='tank-photo' src="/images/scuba-background.jpg" alt='' />
             <p className='info-p'> Please visit the events page for upcoming diving events! </p>
-          </div>
-          <div>
-            <EventsList />
           </div>
         </div>
 

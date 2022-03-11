@@ -10,7 +10,7 @@ module.exports = {
       */
       return queryInterface.bulkInsert('Events', [
         {
-          hostId: 1,
+          userId: 1,
           name: 'St Anthonys',
           date: '2022-04-05',
           region: 'South',
@@ -18,7 +18,7 @@ module.exports = {
           capacity: 10,
         },
         {
-          hostId: 2,
+          userId: 2,
           name: 'Mala Pier',
           date: '2022-04-15',
           region: 'West',
@@ -26,7 +26,7 @@ module.exports = {
           capacity: 15,
         },
         {
-          hostId: 3,
+          userId: 3,
           name: 'Hookipa Lookout',
           date: '2022-04-25',
           region: 'North',
@@ -34,7 +34,7 @@ module.exports = {
           capacity: 5,
         },
         {
-          hostId: 1,
+          userId: 1,
           name: 'Five Graves Caverns',
           date: '2022-04-10',
           region: 'South',
