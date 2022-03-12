@@ -52,8 +52,9 @@ router.delete(
   asyncHandler(async function (req, res, next) {
     const userId = req.user.id;
     const category = await Category.findByPk(req.params.id);
+    console.log('thisssssssssssssssss' , category.userId)
     if (category) {
-      if (userId === event.userId) {
+      if (userId === category.userId) {
         await category.destroy();
       } else {
         const err = Error('Unauthorized user');

@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import { fetchEvent } from '../../store/event'
 import { Redirect, NavLink, useHistory } from 'react-router-dom'
 import { removeEvent } from '../../store/event'
-import { removeCategory } from '../../store/category'
+
+import CategoriesList from './CategoriesList'
 
 
 import './EventPage.css'
@@ -42,6 +43,19 @@ const EventPage = () => {
       history.push('/events');
     }
   }
+
+
+  const createCategoryButton = () => {
+    if (!sessionUser) return;
+    if (sessionUser.id === event?.userId) {
+      return (
+      <>
+        <NavLink className='PLACEHOLDER' exact to={`/events/${event?.id}/categories/create`}>Create Category</NavLink>
+
+      </>
+      );
+    }
+  };
 
   const showDeleteButton = () => {
     if (deleteOption === true) {
@@ -95,69 +109,8 @@ const EventPage = () => {
     }
   }
 
-  const createCategoryButton = () => {
-    if (!sessionUser) return;
-    if (sessionUser.id === event?.userId) {
-      return (
-      <>
-        <NavLink className='PLACEHOLDER' exact to={`/events/${event?.id}/categories/create`}>Create Category</NavLink>
-        {showDeleteButtonCategory()}
-      </>
-      );
-    }
-  };
 
 
-   const destroyCategoryButton = async (e) => {
-     e.preventDefault();
-     const payload = {
-       userId: sessionUser.id,
-       id: category.id
-     }
-     let destroyedCategory;
-     destroyedCategory = await dispatch(removeCategory(payload))
-       .catch(error => (console.log('error in delete')))
-
-     if (destroyedCategory) {
-       history.push('/events');
-     }
-   }
-
-  const showDeleteButtonCategory = () => {
-    if (deleteOption === true) {
-      return (
-        <>
-          <ul>
-            <li>
-              <button
-                type='submit'
-                onClick={destroyCategoryButton}
-                className='PLACEHOLDER'
-              >
-                Delete Category
-              </button>
-              <button
-                type='submit'
-                onClick={() => setDeleteOption(false)}
-              >
-                Cancel Delete Category
-              </button>
-            </li>
-          </ul>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <button
-            onClick={() => setDeleteOption(true)}
-          >
-            Delete Category
-          </button>
-        </>
-      )
-    }
-  }
 
 
   if (sessionUser) {
@@ -172,16 +125,13 @@ const EventPage = () => {
             <p className='event-capacity'>Capacity: {event?.capacity}</p>
             <ul className='PLACEHOLDER'> Categories:
               {event?.Categories?.map((category) => (
-                <li key={category.id}>
-                  {category?.type}
-                </li>
+                <CategoriesList key={category.id} category={category}  />
               ))}
             </ul>
           </div>
-          <div>
-            {editEventButton(event)}
             {createCategoryButton(event)}
-          </div>
+            {editEventButton(event)}
+
         </div>
       </>
     )
