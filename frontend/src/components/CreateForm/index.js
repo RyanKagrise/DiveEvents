@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, NavLink } from 'react-router-dom';
 import { ValidationError } from '../utils/ValidationError';
 import { ErrorMessage } from '../utils/ErrorMessage'
 import { createNewEvent } from '../../store/event'
 import * as sessionActions from '../../store/session';
+
 
 const CreateForm = () => {
   const dispatch = useDispatch();
@@ -51,18 +52,17 @@ const CreateForm = () => {
     let createdEvent;
 
     try {
-      createdEvent = await dispatch(createNewEvent(newEvent));
+      createdEvent = await dispatch(createNewEvent(newEvent)).then(()=> history.push('/events'));
     } catch (error) {
-      history.push('/events/create')
-    }
-    if (createNewEvent) {
-      setErrorMessages({});
-      setErrors([]);
-      history.push('/events');
+      console.log(error)
     }
   }
 
+
+
   return (
+    <>
+
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -73,7 +73,7 @@ const CreateForm = () => {
           <ErrorMessage message={errorMessages.overall} />
         </div>
         <div className='PLACEHOLDER'>
-          <label className='PLACEHOLDER'>
+          <label className='PLACEHOLDER'> Name:
             <input
               type='text'
               placeholder='Name'
@@ -82,7 +82,7 @@ const CreateForm = () => {
               required
             />
           </label>
-          <label className='PLACEHOLDER'>
+          <label className='PLACEHOLDER'> Date
             <input
               type='date'
               placeholder='yyyy-mm-dd'
@@ -91,7 +91,7 @@ const CreateForm = () => {
               required
             />
           </label>
-          <label className='PLACEHOLDER'>
+          <label className='PLACEHOLDER'> Region
             <input
               type='text'
               placeholder='Region'
@@ -100,8 +100,8 @@ const CreateForm = () => {
               required
             />
           </label>
-          <label className='PLACEHOLDER'>
-            <input
+          <label className='PLACEHOLDER'> Description
+            <textarea
               type='text'
               placeholder='Description'
               value={content}
@@ -109,7 +109,7 @@ const CreateForm = () => {
               required
             />
           </label>
-          <label className='PLACEHOLDER'>
+          <label className='PLACEHOLDER'> Capacity
             <input
               type='number'
               placeholder='Capacity'
@@ -126,6 +126,7 @@ const CreateForm = () => {
           > Create New Event </button>
         </div>
       </form>
+    </>
   )
 
 };

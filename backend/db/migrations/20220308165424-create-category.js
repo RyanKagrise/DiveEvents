@@ -12,6 +12,11 @@ module.exports = {
         type: Sequelize.STRING(50),
         allowNull: false
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: { model: "Users"},
+        allowNull: false
+      },
       eventId: {
         type: Sequelize.INTEGER,
         references: { model: "Events" },

@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react'
 import { fetchEvent } from '../../store/event'
 import { Redirect, NavLink, useHistory } from 'react-router-dom'
 import { removeEvent } from '../../store/event'
+
+import CategoriesList from './CategoriesList'
+
+
 import './EventPage.css'
 
 const EventPage = () => {
@@ -11,14 +15,15 @@ const EventPage = () => {
   const dispatch = useDispatch();
   const eventParam = useParams();
 
-  const eventId = eventParam.id;
+  const eventId = eventParam.id
 
   const [deleteOption, setDeleteOption] = useState(false);
 
-
+  const category = useSelector((state) => state.event.Categories)
   const sessionUser = useSelector((state) => state.session.user);
 
   const event = useSelector((state) => state.event[eventId]);
+
 
   useEffect(() => {
     dispatch(fetchEvent(eventId));
@@ -28,16 +33,29 @@ const EventPage = () => {
     e.preventDefault();
     const payload = {
       userId: sessionUser.id,
-      id: event?.id
+      id: eventId
     }
     let destroyedEvent;
     destroyedEvent = await dispatch(removeEvent(payload))
       .catch(error => (console.log('error in delete')))
 
-    if (destroyedEvent.id) {
+    if (destroyedEvent) {
       history.push('/events');
     }
   }
+
+
+  const createCategoryButton = () => {
+    if (!sessionUser) return;
+    if (sessionUser.id === event?.userId) {
+      return (
+      <>
+        <NavLink className='PLACEHOLDER' exact to={`/events/${event?.id}/categories/create`}>Create Category</NavLink>
+
+      </>
+      );
+    }
+  };
 
   const showDeleteButton = () => {
     if (deleteOption === true) {
@@ -68,7 +86,7 @@ const EventPage = () => {
           <button
             onClick={() => setDeleteOption(true)}
           >
-            Delete
+            Delete Event
           </button>
         </>
       )
@@ -91,6 +109,10 @@ const EventPage = () => {
     }
   }
 
+
+
+
+
   if (sessionUser) {
     return (
       <>
@@ -99,10 +121,17 @@ const EventPage = () => {
             <h2>{event?.name}</h2>
             {event ? <img className='event-photo' src='/images/eventPhoto.jpg' alt='' /> : null}
             <p className='event-date'>Date: {event?.date}</p>
-            <p className='event-content'>Date: {event?.content}</p>
+            <p className='event-content'>Description: {event?.content}</p>
             <p className='event-capacity'>Capacity: {event?.capacity}</p>
+            <ul className='PLACEHOLDER'> Categories:
+              {event?.Categories?.map((category) => (
+                <CategoriesList key={category.id} category={category}  />
+              ))}
+            </ul>
           </div>
-          {editEventButton(event)}
+            {createCategoryButton(event)}
+            {editEventButton(event)}
+
         </div>
       </>
     )

@@ -6,16 +6,20 @@ import './EventsList.css'
 
 
 const EventsList = () => {
+
   const dispatch = useDispatch();
 
-  const events = useSelector((state) => state.event);
-  const sessionUser = useSelector((state) => state.session.user);
 
+  const events = useSelector((state) => state.event);
+
+
+  const sessionUser = useSelector((state) => state.session.user);
 
   const eventsArray = Object.values(events);
 
+
   useEffect(() => {
-    dispatch(fetchEvents());
+  dispatch(fetchEvents());
   }, [dispatch]);
 
   if (!events) {
@@ -45,8 +49,15 @@ const EventsList = () => {
             >
               <h3 className='event-name'>{event?.name}</h3>
               <p className='event-date'>Date: {event?.date}</p>
-              <p className='event-content'>{event?.content}</p>
+              <p className='event-content'>Description: {event?.content}</p>
               <p className='event-capacity'>Capacity: {event?.capacity}</p>
+              <div className='PLACEHOLDER'> Categories:
+                {event?.Categories?.map((category) => (
+                <p key={category?.id}>
+                  {category?.type}
+                </p>
+                ))}
+              </div>
             </NavLink>
           ))}
         </ul>

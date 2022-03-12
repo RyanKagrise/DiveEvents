@@ -3,6 +3,7 @@ body {
   background-image: url(images/beach-background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: auto;
 }
 
 button {

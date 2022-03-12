@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: false
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     eventId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -13,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   Category.associate = function(models) {
     // associations can be defined here
     Category.belongsTo(models.Event, { foreignKey: "eventId" });
+    Category.belongsTo(models.User, { foreignKey: "userId" });
   };
   return Category;
 };

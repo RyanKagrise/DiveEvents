@@ -25,10 +25,10 @@ const getEvent = event => {
   }
 }
 
-const createEvent = newEvent => {
+const createEvent = event => {
   return {
     type: CREATE_EVENT,
-    newEvent
+    event
   }
 }
 
@@ -125,7 +125,7 @@ export const removeEvent = (event) => async dispatch => {
   });
   if (res.ok) {
     const removedEvent = await res.json();
-    dispatch(deleteEvent(removedEvent.id))
+    await dispatch(deleteEvent(removedEvent))
     return removedEvent;
   }
   return false;
