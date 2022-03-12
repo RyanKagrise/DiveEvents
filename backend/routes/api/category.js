@@ -36,10 +36,11 @@ router.post(
 
     const newCategory = await Category.findOne({
       where: {
-        id: category.id
+        id
       },
       include: [
-        { model: Event }
+        { model: Event },
+        { model: User }
       ]
     })
     res.json(newCategory)
