@@ -50,7 +50,7 @@ const EventPage = () => {
     if (sessionUser.id === event?.userId) {
       return (
       <>
-        <NavLink className='PLACEHOLDER' exact to={`/events/${event?.id}/categories/create`}>Create Category</NavLink>
+        <NavLink className='standard-link' exact to={`/events/${event?.id}/categories/create`}>Create Category</NavLink>
 
       </>
       );
@@ -100,7 +100,7 @@ const EventPage = () => {
     if (sessionUser.id === event?.userId) {
       return (
         <>
-          <NavLink className='PLACEHOLDER' exact to={`/events/${event?.id}/edit`}>
+          <NavLink className='standard-link' exact to={`/events/${event?.id}/edit`}>
             Edit Event
           </NavLink>
           {showDeleteButton()}

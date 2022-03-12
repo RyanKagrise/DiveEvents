@@ -31,7 +31,7 @@ const EventsList = () => {
       return null;
     } else {
       return (
-        <NavLink className="PLACEHOLDER" to="/events/create">Create Event</NavLink>
+        <NavLink className="standard-link" to="/events/create">Create Event</NavLink>
       );
     }
   };
