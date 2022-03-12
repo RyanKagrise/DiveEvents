@@ -24,7 +24,6 @@ const CategoriesList = ({ category }) => {
   const destroyCategoryButton = async (e) => {
     e.preventDefault();
     const payload = {
-      userId: sessionUser.id,
       id: category.id
     }
     let destroyedCategory;

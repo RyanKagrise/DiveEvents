@@ -17,7 +17,7 @@ const createCategory = category => {
 
 const deleteCategory = id => {
   return {
-    DELETE_CATEGORY,
+    type: DELETE_CATEGORY,
     id
   }
 }
@@ -83,7 +83,6 @@ const categoriesReducer = (state = {} , action) => {
     case DELETE_CATEGORY: {
       const newState = {...state};
       delete newState[action.id];
-      console.log(action.id)
       return newState
     }
 
