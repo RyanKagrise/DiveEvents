@@ -38,8 +38,8 @@ const CreateCategory = () => {
     e.preventDefault();
 
     const newCategory = {
-      userId: sessionUser,
       type,
+      userId: sessionUser.id,
       eventId
     };
 

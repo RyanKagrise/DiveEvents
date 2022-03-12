@@ -83,6 +83,7 @@ const categoriesReducer = (state = {} , action) => {
     case DELETE_CATEGORY: {
       const newState = {...state};
       delete newState[action.id];
+      console.log(action.id)
       return newState
     }
 

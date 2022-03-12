@@ -5,7 +5,7 @@ import { fetchEvent } from '../../store/event'
 import { Redirect, NavLink, useHistory } from 'react-router-dom'
 import { removeCategory } from '../../store/category'
 
-const CategoriesList = ( {category} ) => {
+const CategoriesList = ({ category }) => {
 
   let history = useHistory();
   const dispatch = useDispatch();
@@ -28,8 +28,11 @@ const CategoriesList = ( {category} ) => {
       id: category.id
     }
     let destroyedCategory;
-    destroyedCategory = await dispatch(removeCategory(payload))
-      .catch(error => (console.log('error in delete')))
+    try {
+      destroyedCategory = await dispatch(removeCategory(payload)).then(() => history.push('/events'));
+    } catch (error) {
+      (console.log('error in delete'))
+    }
 
     if (destroyedCategory) {
       history.push('/events');
@@ -76,13 +79,13 @@ const CategoriesList = ( {category} ) => {
 
   return (
     <>
-       <li key={category.id}>
-          {category?.type}
-        </li>
-        <div>
+      <li key={category.id}>
+        {category?.type}
+      </li>
+      <div>
 
         {showDeleteButtonCategory()}
-        </div>
+      </div>
     </>
 
   )
