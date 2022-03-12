@@ -19,6 +19,11 @@ module.exports = {
         username: 'FakeUser2',
         hashedPassword: bcrypt.hashSync('password3')
       },
+      {
+        email: 'dive@demo.events',
+        username: 'Demo-User',
+        hashedPassword: bcrypt.hashSync('password1!')
+      }
     ], {});
   },
 
