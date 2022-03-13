@@ -26,41 +26,35 @@ const EventsList = () => {
     return null;
   }
 
-  const createEventButton = () => {
-    if (!sessionUser) {
-      return null;
-    } else {
-      return (
-        <NavLink className="PLACEHOLDER" to="/events/create">Create Event</NavLink>
-      );
-    }
-  };
 
   return (
     <>
-      {createEventButton()}
-      <div className='events-links'>
-        <ul className='events-list'>
-          {eventsArray.map((event) => (
-            <NavLink
-              to={`/events/${event.id}`}
-              key={event.id}
-              style={{ textDecoration: "none", padding: 25 }}
-            >
-              <h3 className='event-name'>{event?.name}</h3>
-              <p className='event-date'>Date: {event?.date}</p>
-              <p className='event-content'>Description: {event?.content}</p>
-              <p className='event-capacity'>Capacity: {event?.capacity}</p>
-              <div className='PLACEHOLDER'> Categories:
-                {event?.Categories?.map((category) => (
-                <p key={category?.id}>
-                  {category?.type}
-                </p>
-                ))}
-              </div>
-            </NavLink>
-          ))}
-        </ul>
+      <div className='event-page-container'>
+        <p className='title'> Dive Events Page </p>
+        <div className='main-event-container'>
+          <ul>
+            {eventsArray.map((event) => (
+              <NavLink
+                to={`/events/${event.id}`}
+                key={event.id}
+                className='event-layout'
+                style={{ textDecoration: "none", padding: 25, marginTop: 0 }}
+              >
+                <h3 className='event-name'>{event?.name}</h3>
+                <p className='event-date'>Date: {event?.date}</p>
+                <p className='event-content'>Description: {event?.content}</p>
+                <p className='event-capacity'>Capacity: {event?.capacity}</p>
+                <div> Categories:
+                  {event?.Categories?.map((category) => (
+                  <p key={category?.id}>
+                    {category?.type}
+                  </p>
+                  ))}
+                </div>
+              </NavLink>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   )

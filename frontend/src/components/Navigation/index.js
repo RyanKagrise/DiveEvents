@@ -16,7 +16,7 @@ function Navigation({ isLoaded }){
   const demoHandler = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({credential: 'demo@user.io', password: 'password'}))
+    return dispatch(sessionActions.login({credential: 'dive@demo.events', password: 'password1!'}))
     .catch(
       async (res) => {
         const data = await res.json();
@@ -25,15 +25,27 @@ function Navigation({ isLoaded }){
     );
   }
 
+  const createEventButton = () => {
+    if (!sessionUser) {
+      return null;
+    } else {
+      return (
+        <NavLink className="standard-link" to="/events/create">Create Event</NavLink>
+      );
+    }
+  };
+
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
     <>
-      <div>
-        <ProfileButton user={sessionUser} />
+      <div className='nav-header'>
+        {createEventButton()}
+        <NavLink className='standard-link' exact to ='/events'>Events</NavLink>
       </div>
       <div>
-        <NavLink className='PLACEHOLDER' exact to ='/events'>Events</NavLink>
+      <ProfileButton user={sessionUser} />
       </div>
     </>
 
@@ -42,10 +54,10 @@ function Navigation({ isLoaded }){
     sessionLinks = (
       <>
           <LoginFormModal />
-          <NavLink to="/signup" className='signup-link'>Sign Up</NavLink>
+          <NavLink to="/signup" className='standard-link'>Sign Up</NavLink>
           <button
           onClick={demoHandler}
-          className='PLACEHOLDER'
+          className='standard-link'
           >
             Demo User
           </button>
@@ -56,9 +68,9 @@ function Navigation({ isLoaded }){
 
   return (
     <ul>
-      <li className='nav-links'>
-        <div>
-          <NavLink className='signup-link' exact to="/">Home</NavLink>
+      <li>
+        <div className='nav-links'>
+          <NavLink className='standard-link' exact to="/">Home</NavLink>
           {isLoaded && sessionLinks}
         </div>
       </li>

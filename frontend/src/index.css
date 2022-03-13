@@ -3,7 +3,7 @@ body {
   background-image: url(images/beach-background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  overflow: auto;
+  height: auto;
 }
 
 button {
@@ -13,4 +13,57 @@ button {
   border: none;
   font: 15px black sans-serif;
   font-weight: bold;
+  box-shadow: 1.5px 1.5px #0396A6;
+  border: 1px solid #0D0D0D;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  list-style-type: none;
+}
+/*
+
+.standard-form {
+
+} */
+
+.standard-link {
+  color: black;
+  text-decoration: none;
+  font: 15px black san-serif;
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 25px;
+  font-weight: bold;
+  box-shadow: 1.5px 1.5px #0396A6;
+  border: 1px solid #0D0D0D;
+}
+
+
+h2 {
+  padding-top: 50px;
+}
+
+li.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.standard-link {
+  color: black;
+  text-decoration: none;
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 25px;
+  font-weight: bold;
+  max-height: 40px;
+  box-sizing: border-box;
 }

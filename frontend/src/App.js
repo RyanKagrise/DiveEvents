@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <div className='page-container'>
+      <div className=''>
         <Navigation isLoaded={isLoaded} />
         {isLoaded && (
           <Switch>

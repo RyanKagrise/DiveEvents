@@ -6,6 +6,7 @@ import { ErrorMessage } from '../utils/ErrorMessage'
 import { createNewCategory } from '../../store/category'
 import { fetchEvent } from '../../store/event'
 import * as sessionActions from '../../store/session';
+import './CreateCategory.css'
 
 const CreateCategory = () => {
   let history = useHistory();
@@ -53,34 +54,36 @@ const CreateCategory = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <div>
-          <ErrorMessage message={errorMessages.overall} />
-        </div>
-        <div className='PLACEHOLDER'>
-          <label className='PLACEHOLDER'>
-            <input
-            type='text'
-            placeholder='Category'
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-          />
-          </label>
+      <div className='event-page-container'>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <div>
+            <ErrorMessage message={errorMessages.overall} />
+          </div>
+          <div className='form-container-cat'>
+            <label className='PLACEHOLDER'> Category:
+              <input
+              type='text'
+              placeholder='Category'
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+            />
+            </label>
 
-          <button
-          type='submit'
-          disabled={errors.length > 0}
-          className='PLACEHOLDER'
-          >
-            Create New Category
-          </button>
-        </div>
-      </form>
+            <button
+            type='submit'
+            disabled={errors.length > 0}
+            className='PLACEHOLDER'
+            >
+              Create New Category
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 };

@@ -67,76 +67,78 @@ const EditForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <div>
-          <ErrorMessage message={errorMessages.overall} />
-        </div>
-        <div className='PLACEHOLDER'>
-          <label className='PLACEHOLDER'>
-            <div className='PLACEHOLDER'>Name</div>
-            <input
-              type='text'
-              placeholder='Name'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </label>
-          <label className='PLACEHOLDER'>
-            <div className='PLACEHOLDER'>Date</div>
-            <input
-              type='date'
-              placeholder='yyyy-mm-dd'
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-          </label>
-          <label className='PLACEHOLDER'>
-            <div className='PLACEHOLDER'>Region</div>
-            <input
-              type='text'
-              placeholder='Region'
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
-              required
-            />
-          </label>
-          <label className='PLACEHOLDER'>
-            <div className='PLACEHOLDER'>Description</div>
-            <input
-              type='text'
-              placeholder='Description'
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
+      <div className='event-page-container'>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <div>
+            <ErrorMessage message={errorMessages.overall} />
+          </div>
+          <div className='form-container'>
+            <label className='PLACEHOLDER'>
+              <div className='PLACEHOLDER'>Name</div>
+              <input
+                type='text'
+                placeholder='Name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
               />
-          </label>
-          <label className='PLACEHOLDER'>
-            <div className='PLACEHOLDER'>Capacity</div>
-            <input
-              type='text'
-              placeholder='Capacity'
-              value={capacity}
-              onChange={(e) => setCapacity(e.target.value)}
-              required
+            </label>
+            <label className='PLACEHOLDER'>
+              <div className='PLACEHOLDER'>Date</div>
+              <input
+                type='date'
+                placeholder='yyyy-mm-dd'
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
               />
-          </label>
+            </label>
+            <label className='PLACEHOLDER'>
+              <div className='PLACEHOLDER'>Region</div>
+              <input
+                type='text'
+                placeholder='Region'
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+                required
+              />
+            </label>
+            <label className='PLACEHOLDER'>
+              <div className='PLACEHOLDER'>Description</div>
+              <input
+                type='text'
+                placeholder='Description'
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+                />
+            </label>
+            <label className='PLACEHOLDER'>
+              <div className='PLACEHOLDER'>Capacity</div>
+              <input
+                type='text'
+                placeholder='Capacity'
+                value={capacity}
+                onChange={(e) => setCapacity(e.target.value)}
+                required
+                />
+            </label>
 
-          <button
-            type='submit'
-            disabled={errors.length > 0}
-            className='PLACEHOLDER'
-            >
-            Update Event
-          </button>
-        </div>
-      </form>
+            <button
+              type='submit'
+              disabled={errors.length > 0}
+              className='PLACEHOLDER'
+              >
+              Update Event
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   )
 };

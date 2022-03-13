@@ -50,7 +50,7 @@ const EventPage = () => {
     if (sessionUser.id === event?.userId) {
       return (
       <>
-        <NavLink className='PLACEHOLDER' exact to={`/events/${event?.id}/categories/create`}>Create Category</NavLink>
+        <NavLink className='standard-link' exact to={`/events/${event?.id}/categories/create`}>Create Category</NavLink>
 
       </>
       );
@@ -66,13 +66,14 @@ const EventPage = () => {
               <button
                 type='submit'
                 onClick={destroyEventButton}
-                className='PLACEHOLDER'
+                className='standard-link'
               >
                 Delete Event
               </button>
               <button
                 type='submit'
                 onClick={() => setDeleteOption(false)}
+                className='standard-link'
               >
                 Cancel Delete
               </button>
@@ -85,6 +86,7 @@ const EventPage = () => {
         <>
           <button
             onClick={() => setDeleteOption(true)}
+            className='standard-link'
           >
             Delete Event
           </button>
@@ -100,7 +102,7 @@ const EventPage = () => {
     if (sessionUser.id === event?.userId) {
       return (
         <>
-          <NavLink className='PLACEHOLDER' exact to={`/events/${event?.id}/edit`}>
+          <NavLink className='standard-link' exact to={`/events/${event?.id}/edit`}>
             Edit Event
           </NavLink>
           {showDeleteButton()}
@@ -118,7 +120,7 @@ const EventPage = () => {
       <>
         <div className='event-page-container'>
           <div className='event-container'>
-            <h2>{event?.name}</h2>
+            <h2 className='event-title'>{event?.name}</h2>
             {event ? <img className='event-photo' src='/images/eventPhoto.jpg' alt='' /> : null}
             <p className='event-date'>Date: {event?.date}</p>
             <p className='event-content'>Description: {event?.content}</p>
@@ -129,8 +131,10 @@ const EventPage = () => {
               ))}
             </ul>
           </div>
+          <div className='buttons-list'>
             {createCategoryButton(event)}
             {editEventButton(event)}
+          </div>
 
         </div>
       </>
