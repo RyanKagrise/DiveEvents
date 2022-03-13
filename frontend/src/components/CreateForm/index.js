@@ -5,6 +5,7 @@ import { ValidationError } from '../utils/ValidationError';
 import { ErrorMessage } from '../utils/ErrorMessage'
 import { createNewEvent } from '../../store/event'
 import * as sessionActions from '../../store/session';
+import './CreateForm.css'
 
 
 const CreateForm = () => {
@@ -62,70 +63,73 @@ const CreateForm = () => {
 
   return (
     <>
+      
+      <div className='event-page-container'>
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <div>
+            <ErrorMessage message={errorMessages.overall} />
+          </div>
+          <div className='form-container'>
+            <label className='PLACEHOLDER'> Name:
+              <input
+                type='text'
+                placeholder='Name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </label>
+            <label className='PLACEHOLDER'> Date:
+              <input
+                type='date'
+                placeholder='yyyy-mm-dd'
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
+              />
+            </label>
+            <label className='PLACEHOLDER'> Region:
+              <input
+                type='text'
+                placeholder='Region'
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+                required
+              />
+            </label>
+            <label className='PLACEHOLDER'> Description:
+              <textarea
+                type='text'
+                placeholder='Description'
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+              />
+            </label>
+            <label className='PLACEHOLDER'> Capacity:
+              <input
+                type='number'
+                placeholder='Capacity'
+                value={capacity}
+                onChange={(e) => setCapacity(e.target.value)}
+                required
+              />
+            </label>
 
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <div>
-          <ErrorMessage message={errorMessages.overall} />
-        </div>
-        <div className='PLACEHOLDER'>
-          <label className='PLACEHOLDER'> Name:
-            <input
-              type='text'
-              placeholder='Name'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </label>
-          <label className='PLACEHOLDER'> Date
-            <input
-              type='date'
-              placeholder='yyyy-mm-dd'
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-          </label>
-          <label className='PLACEHOLDER'> Region
-            <input
-              type='text'
-              placeholder='Region'
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
-              required
-            />
-          </label>
-          <label className='PLACEHOLDER'> Description
-            <textarea
-              type='text'
-              placeholder='Description'
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
-            />
-          </label>
-          <label className='PLACEHOLDER'> Capacity
-            <input
-              type='number'
-              placeholder='Capacity'
-              value={capacity}
-              onChange={(e) => setCapacity(e.target.value)}
-              required
-            />
-          </label>
+            <button
+              type='submit'
+              disabled={errors.length > 0}
+              className='standard-link'
+            > Create New Event </button>
+          </div>
+        </form>
+      </div>
 
-          <button
-            type='submit'
-            disabled={errors.length > 0}
-            className='PLACEHOLDER'
-          > Create New Event </button>
-        </div>
-      </form>
     </>
   )
 

@@ -1,0 +1,34 @@
+.form-container-cat {
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+  border-radius: 25px;
+  width: 750px;
+  height: 300px;
+  margin-top: 200px;
+  padding: 50px;
+  box-sizing: border-box;
+  text-align: center;
+  font: 20px black sans-serif;
+  overflow: auto;
+  overflow-y: scroll;
+  box-shadow: 3px 3px #0396A6;
+  border: 2px solid #0D0D0D;
+}
+
+.event-page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+ }
+
+ label {
+   margin: 50px;
+ }
+
+ input {
+   margin-left: 10px;
+ }

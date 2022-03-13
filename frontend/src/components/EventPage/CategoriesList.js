@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { fetchEvent } from '../../store/event'
 import { Redirect, NavLink, useHistory } from 'react-router-dom'
 import { removeCategory } from '../../store/category'
+import './EventPage.css'
 
 const CategoriesList = ({ category }) => {
 
@@ -56,7 +57,7 @@ const CategoriesList = ({ category }) => {
                 type='submit'
                 onClick={() => setDeleteOption(false)}
               >
-                Cancel Delete Category
+                Cancel Delete
               </button>
             </li>
           </ul>
@@ -78,7 +79,7 @@ const CategoriesList = ({ category }) => {
 
   return (
     <>
-      <li key={category.id}>
+      <li  className='cat-list' key={category.id}>
         {category?.type}
       </li>
       <div>

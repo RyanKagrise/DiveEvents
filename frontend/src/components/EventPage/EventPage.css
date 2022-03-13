@@ -4,9 +4,6 @@
 }
 
 .event-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: white;
   border-radius: 25px;
   width:500px;
@@ -16,6 +13,8 @@
   box-sizing: border-box;
   text-align: center;
   font: 20px black sans-serif;
+  overflow: auto;
+  overflow-y: scroll;
 }
 
  .event-page-container {
@@ -24,4 +23,16 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+ }
+
+ .buttons-list {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+ }
+
+ .cat-list {
+   padding: 10px;
+   margin: 10px;
  }
