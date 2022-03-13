@@ -5,12 +5,12 @@ ul {
 }
 
 .event-page-container {
-  height: 90vh;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+
   align-items: center;
   margin-bottom: 20px;
+  padding: 20px;
  }
 
 
@@ -24,8 +24,7 @@ ul {
   font: 20px black sans-serif;
   overflow: auto;
   overflow-y: scroll;
-  height: fit-content;
-  margin-bottom: 10px;
+  padding: 20px;
 }
 
 .event-layout {
