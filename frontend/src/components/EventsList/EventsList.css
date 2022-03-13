@@ -24,7 +24,6 @@ ul {
   font: 20px black sans-serif;
   overflow: auto;
   overflow-y: scroll;
-  scrollbar-color: white #0396A6;
   height: fit-content;
   margin-bottom: 10px;
 }

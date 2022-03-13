@@ -55,3 +55,15 @@ li.nav-links {
   justify-content: space-between;
   align-items: center;
 }
+
+.standard-link {
+  color: black;
+  text-decoration: none;
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 25px;
+  font-weight: bold;
+  max-height: 40px;
+  box-sizing: border-box;
+}
