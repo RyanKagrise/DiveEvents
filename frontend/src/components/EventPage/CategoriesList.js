@@ -77,6 +77,7 @@ const CategoriesList = ({ category }) => {
   }
 
 
+  if (sessionUser.id === event.userId) {
   return (
     <>
       <li  className='cat-list' key={category.id}>
@@ -89,7 +90,14 @@ const CategoriesList = ({ category }) => {
     </>
 
   )
+} else {
+  return (
+    <>
+      <li  className='cat-list' key={category.id}>
+        {category?.type}
+      </li>
+    </>
+    )
+  }
 }
-
-
 export default CategoriesList;

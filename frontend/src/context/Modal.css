@@ -16,9 +16,17 @@
   left: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
+
 }
 
 #modal-content {
   position: absolute;
   background-color:white;
+  border: solid black 2px;
+  box-shadow: 1.5px 1.5px #0396A6;
+  border-radius: 25px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  font: 20px black sans-serif;
 }
