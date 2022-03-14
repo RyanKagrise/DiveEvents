@@ -63,12 +63,12 @@ const CreateForm = () => {
 
   return (
     <>
-      
+
       <div className='event-page-container'>
         <form onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li className='validationErrors' key={idx}>{error}</li>
             ))}
           </ul>
           <div>

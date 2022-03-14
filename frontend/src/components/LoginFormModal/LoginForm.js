@@ -25,7 +25,7 @@ function LoginForm() {
         <form onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <li className='validationErrors' key={idx}>{error}</li>
             ))}
           </ul>
           <div>
