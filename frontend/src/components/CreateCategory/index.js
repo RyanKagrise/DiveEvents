@@ -28,9 +28,9 @@ const CreateCategory = () => {
 
   useEffect(() => {
     const validationErrors = [];
-    if (type.length > 50)
+    if (type.length > 50 || type.length < 1)
       validationErrors.push(
-        'Please limit category types to less than 50 characters!'
+        'Type cannot be empty! Also please limit category types to less than 50 characters!'
       );
     setErrors(validationErrors);
   }, [type])
