@@ -1,4 +1,4 @@
-# Dive Events (Eventbrite Inspired Application)
+# Dive Events
 
 ### Dive Events is a full stack application that allows users to post events, add categories to those events, and view community events! Coming soon will be reservations and map integration!
 
